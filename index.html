@@ -364,7 +364,64 @@ body{
 
 }
 
+ /*type writer effect logic --------------------*/
+    var _CONTENT = [ 
+        "Hay There Lucky", 
+        "kaisi ho ? 😌", 
+        "Mast hi hogi.", 
+        "Aacha Wait !",
+        "Wish you a very very happy birthday",
+        "ab isko dekh lo",
+        "upper left me tin line",
+        "ko click kar do.",
+        "Ab dekh ke ja ke birthday manao",
+        "birthday manao aur pado 🥰",
+        "Bye Bye 🙋‍♂️"
+    ];
+    var _PART = 0;
+    var _PART_INDEX = 0;
+    var _INTERVAL_VAL;
+    var _ELEMENT = document.querySelector("#text");
+    var _CURSOR = document.querySelector("#cursor");
+    
+    function Type() { 
+        var text =  _CONTENT[_PART].substring(0, _PART_INDEX + 1);
+        _ELEMENT.innerHTML = text;
+        _PART_INDEX++;
 
+        if(text === _CONTENT[_PART]) {
+            _CURSOR.style.display = 'none';
+
+            clearInterval(_INTERVAL_VAL);
+            setTimeout(function() {
+                _INTERVAL_VAL = setInterval(Delete, 50);
+            }, 1000);
+        }
+    }
+
+    function Delete() {
+        var text =  _CONTENT[_PART].substring(0, _PART_INDEX - 1);
+        _ELEMENT.innerHTML = text;
+        _PART_INDEX--;
+
+        if(text === '') {
+            clearInterval(_INTERVAL_VAL);
+
+            if(_PART == (_CONTENT.length - 1))
+                _PART = 0;
+            else
+                _PART++;
+        
+            _PART_INDEX = 0;
+
+            setTimeout(function() {
+                _CURSOR.style.display = 'inline-block';
+                _INTERVAL_VAL = setInterval(Type, 200);
+            }, 200);
+        }
+    }
+
+    _INTERVAL_VAL = setInterval(Type, 100);
 
 /*about us section*/
 
@@ -1213,7 +1270,10 @@ body{
 
             <h1>Mukesh Tak</h1>
 
-            <h4>I'm a Front End Web Developer</h4>
+           <div id="typewriter_container">     
+                    <div id="text"></div>
+                    <div id="cursor">|</div>    
+                </div>
 
             <a href="https://github.com/MukeshTak09">Follow Me</a>
 
