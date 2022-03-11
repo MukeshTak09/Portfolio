@@ -363,6 +363,33 @@ body{
     font-weight: 700;
 
 }
+#typewriter_container{
+    margin:10px auto;
+    text-align:center;
+}
+#text{
+    display:inline;
+    font-family: 'Chelsea Market', cursive;
+    font-size:30px
+}
+#cursor{
+    display:inline-block;
+    vertical-align:middle;
+    width:3px;
+    height:18px;
+    animation: blink .50s step-end infinite;
+    line-height:60%;
+    font-size:20px;
+} 
+@keyframes blink{
+    from,to{
+        opacity:0;
+    }     
+    50%{
+        opacity:1;
+    }
+}
+
 
  /*type writer effect logic --------------------*/
     var _CONTENT = [ 
